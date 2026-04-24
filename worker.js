@@ -1,8 +1,13 @@
-import { Hono } from 'hono'
-import { serveStatic } from 'hono/cloudflare-workers'
+export default {
+  async fetch(request, env) {
+    let res = await env.ASSETS.fetch(request)
 
-const app = new Hono()
+    if (res.status === 404) {
+      return env.ASSETS.fetch(
+        new Request(new URL('/index.html', request.url).toString())
+      )
+    }
 
-app.use('/*', serveStatic({ root: './dist' }))
-
-export default app
+    return res
+  }
+}
