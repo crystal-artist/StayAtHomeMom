@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+
+/* Default theme variables — overridden by ThemeContext via JS */
+:root {
+  --page-bg:    #f0ede8;
+  --card-bg:    #e8e4df;
+  --card-alt:   #edeae5;
+  --accent:     #78716c;
+  --text-primary: #292524;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--page-bg);
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+/* ── Animations ───────────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-slide-up {
+  opacity: 0;
+  animation: fadeSlideUp 0.45s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.35s ease forwards;
+}
+
+/* ── Smooth collapse ──────────────────────────────────────────────── */
+.collapsible {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity    0.3s ease;
+}
+
+/* ── Reload spin ──────────────────────────────────────────────────── */
+@keyframes spinOnce {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-once {
+  animation: spinOnce 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
